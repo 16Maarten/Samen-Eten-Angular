@@ -1,0 +1,26 @@
+<div class="container bg-info rounded my-2">
+<h1 class="text-center">Gebruikers</h1>
+<table class="table table-striped table-hover bg-grey rounded">
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Opties</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>
+            {{ user.firstName }} {{ user.lastName }}
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <a  class=" bg-grey btn btn-dark" routerLink="{{ user.id }}">details</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-dark bg-grey my-2 col-2" routerLink="new" routerLinkActive="actieve-link" aria-current="page"> new</a>
+  <br>
+</div>
+

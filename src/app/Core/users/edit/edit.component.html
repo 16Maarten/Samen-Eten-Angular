@@ -1,0 +1,27 @@
+<div class="container bg-info rounded my-2">
+    <h1 class="text-center">{{ user?.firstName }} {{ user?.lastName }}</h1>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Voornaam</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Achternaam</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Geboortedatum</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Wachtwoord</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <a type="submit" routerLink="../.." routerLinkActive="actieve-link" class=" bg-grey btn btn-dark ">bijwerken</a>
+      </form>
+      <br>
+</div>
