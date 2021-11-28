@@ -5,10 +5,9 @@ import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  templateUrl: './user.edit.component.html',
 })
-export class EditComponent implements OnInit {
+export class UserEditComponent implements OnInit {
   userId: string | null = null;
   user: User | null = null;
   constructor(private route: ActivatedRoute, private userService: UserService) { }

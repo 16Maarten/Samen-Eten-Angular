@@ -8,10 +8,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './Core/about/about.component';
 import { StudenthomeComponent } from './Core/studenthome/studenthome.component';
-import { EditComponent } from './Core/users/edit/edit.component';
-import { ListComponent } from './Core/users/list/list.component';
-import { CreateComponent } from './Core/users/create/create.component';
-import { DetailComponent } from './Core/users/detail/detail.component';
+import { UserEditComponent } from './Core/user/user.edit/user.edit.component';
+import { UserListComponent } from './Core/user/user.list/user.list.component';
+import { UserCreateComponent } from './Core/user/user.create/user.create.component';
+import { UserDetailComponent } from './Core/user/user.detail/user.detail.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,10 @@ import { DetailComponent } from './Core/users/detail/detail.component';
     NavbarComponent,
     AboutComponent,
     StudenthomeComponent,
-    EditComponent,
-    ListComponent,
-    CreateComponent,
-    DetailComponent
+    UserEditComponent,
+    UserListComponent,
+    UserCreateComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
