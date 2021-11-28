@@ -8,11 +8,14 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './Core/about/about.component';
-import { StudenthomeComponent } from './Core/studenthome/studenthome.component';
 import { UserEditComponent } from './Core/user/user.edit/user.edit.component';
 import { UserListComponent } from './Core/user/user.list/user.list.component';
 import { UserCreateComponent } from './Core/user/user.create/user.create.component';
 import { UserDetailComponent } from './Core/user/user.detail/user.detail.component';
+import { StudenthomeListComponent } from './Core/studenthome/studenthome.list/studenthome.list.component';
+import { StudenthomeDetailComponent } from './Core/studenthome/studenthome.detail/studenthome.detail.component';
+import { StudenthomeEditComponent } from './Core/studenthome/studenthome.edit/studenthome.edit.component';
+import { StudenthomeCreateComponent } from './Core/studenthome/studenthome.create/studenthome.create.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,14 @@ import { UserDetailComponent } from './Core/user/user.detail/user.detail.compone
     FooterComponent,
     NavbarComponent,
     AboutComponent,
-    StudenthomeComponent,
     UserEditComponent,
     UserListComponent,
     UserCreateComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    StudenthomeListComponent,
+    StudenthomeDetailComponent,
+    StudenthomeEditComponent,
+    StudenthomeCreateComponent
   ],
   imports: [
     BrowserModule,
