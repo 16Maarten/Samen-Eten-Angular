@@ -5,5 +5,4 @@ export interface User {
     studentNumber: number;
     birthday: Date;
     email: string;
-    password: string;
   }

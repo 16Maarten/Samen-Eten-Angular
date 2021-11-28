@@ -16,7 +16,6 @@ export class UserService {
           studentNumber: 2176137,
           birthday: new Date("6, 17, 2002"),
           email: "Maarten@gmail.com",
-          password: "secret"
       },
       {
           id: 2,
@@ -25,7 +24,6 @@ export class UserService {
           studentNumber: 7493652,
           birthday: new Date("6, 21, 1983"),
           email: "Gerrit@gmail.com",
-          password: "secret"
       },
       {
           id: 3,
@@ -34,7 +32,6 @@ export class UserService {
           studentNumber: 4356872,
           birthday: new Date("5, 12, 1990"),
           email: "Henk@gmail.com",
-          password: "secret"
       },
       {
           id: 4,
@@ -43,7 +40,6 @@ export class UserService {
           studentNumber: 7495743,
           birthday: new Date("9, 20, 2000"),
           email: "Daan@gmail.com",
-          password: "secret"
       },
       {
           id: 5,
@@ -52,9 +48,22 @@ export class UserService {
           studentNumber: 8375983,
           birthday: new Date("2, 27, 2003"),
           email: "Mart@gmail.com",
-          password: "secret"
       }
   ]
+  }
+
+  createUser(item: User) {
+    this.users.push(item)
+  }
+
+  updateUser(item: User) {
+    const index = this.users.findIndex((p) => p.id == item.id)
+    this.users[index] = item
+  }
+
+  removeUser(id: number) {
+    const index = this.users.findIndex((p) => p.id == id)
+    this.users.splice(index, 1)
   }
 
   getUsers(): User[] {
@@ -64,14 +73,16 @@ export class UserService {
 
   getUsersAsObservable(): Observable<User[]> {
     console.log('getUsersAsObservable aangeroepen');
-    // 'of' is een rxjs operator die een Observable
-    // maakt van de gegeven data.
     return of(this.users);
   }
 
   getUserById(id: number): User {
     console.log('getUserById aangeroepen');
     return this.users.filter((user) => user.id === id)[0];
+  }
+
+  getNewId() {
+    return this.users[this.users.length - 1].id + 1
   }
 
 }

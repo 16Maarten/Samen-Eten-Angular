@@ -1,27 +1,19 @@
 <div class="container bg-info rounded my-2">
     <h1 class="text-center">{{ user?.firstName }} {{ user?.lastName }}</h1>
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Voornaam</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Achternaam</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Geboortedatum</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <form #userForm="ngForm" name="form">
+      <div class="mb-3">
+          <label class="form-label">Voornaam</label>
+          <input type="text" name="firstName" class="form-control" [(ngModel)]="userFirstName">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Wachtwoord</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label class="form-label">Achternaam</label>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="userLastName">
         </div>
-        <a type="submit" routerLink="../.." routerLinkActive="actieve-link" class=" bg-grey btn btn-dark ">bijwerken</a>
-      </form>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp" name="email" [(ngModel)]="userEmail">
+      </div>
+      <a type="submit" routerLink="../../" (click)="onSubmit()" class=" bg-grey btn btn-dark ">Aanpassen</a>
+    </form>
       <br>
 </div>
