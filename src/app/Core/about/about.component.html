@@ -1,17 +1,24 @@
 <div class="container my-2 bg-info rounded">
-  <br>
+  <br />
   <h1 class="text-center">Samen eten angular</h1>
-  <br>
-<div class="row">
+  <br />
+  <div class="row">
     <div class="col-sm-6 col-md-8 col-lg-9">
       <h3>Applicatie</h3>
       <p>
-        Deze applicatie is gemaakt in het kader van het vak 'Clientside web frameworks' van Avans Hogeschool
-        Breda.
-        Om de sociale verbinding tussen mensen te versterken is het idee ontstaan om het gezamenlijk delen van een maaltijd gemakkelijker te maken.
-        Om een project als dit haalbaar te houdenen om de potentie ervan te onderzoekenis gekozen om op kleineschaal te beginnen. We richten ons in eerste instantie op studenten.Het idee is als volgt. 
-        Studenten kunnen zich registreren in het systeem en hun (studenten)huis aanmelden als een plek waar aan een gezamenlijke maaltijd deelgenomen kan worden. Daarna kan degene die dat huis heeft aangemeld een of meer maaltijden aanbieden. 
-        Een maaltijd wordt aangeboden op een datum en tijdstip. Studenten die datwillen kunnen zich aanmelden om deel te nemen aan de maaltijd, tegen een geringe vergoeding.
+        Deze applicatie is gemaakt in het kader van het vak 'Clientside web
+        frameworks' van Avans Hogeschool Breda. Om de sociale verbinding tussen
+        mensen te versterken is het idee ontstaan om het gezamenlijk delen van
+        een maaltijd gemakkelijker te maken. Om een project als dit haalbaar te
+        houdenen om de potentie ervan te onderzoekenis gekozen om op
+        kleineschaal te beginnen. We richten ons in eerste instantie op
+        studenten.Het idee is als volgt. Studenten kunnen zich registreren in
+        het systeem en hun (studenten)huis aanmelden als een plek waar aan een
+        gezamenlijke maaltijd deelgenomen kan worden. Daarna kan degene die dat
+        huis heeft aangemeld een of meer maaltijden aanbieden. Een maaltijd
+        wordt aangeboden op een datum en tijdstip. Studenten die datwillen
+        kunnen zich aanmelden om deel te nemen aan de maaltijd, tegen een
+        geringe vergoeding.
       </p>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4 bg">
@@ -24,82 +31,105 @@
           />
         </div>
         <div class="card-body">
-          <h5> Maarten de Zwart</h5>
-          <p class="card-text">
-            Studentnummer: 2176137</p>
+          <h5>Maarten de Zwart</h5>
+          <p class="card-text">Studentnummer: 2176137</p>
         </div>
       </div>
     </div>
   </div>
-  
+
   <h3>Entiteiten</h3>
   <p>
-    Een studentenhuis heeft een 1 op veel relatie met maaltijd. er kunnen namelijk meerdere maaltijden in een studenthuis worden gegeven.
-    Een maaltijd heeft ook een 1 op veel relatie met deelnamen. Het is namelijk mogelijk om meerdere deelnemers aan 1 maaltijd te hebben.
-    Een gebruiker is gekoppeld aan een afspraak. Een gebruiker is ook gekoppeld aan een maaltijd op het moment dat hij de maaltijd aanmaakt.
+    Een studentenhuis heeft een 1 op veel relatie met maaltijd. er kunnen
+    namelijk meerdere maaltijden in een studenthuis worden gegeven. Een maaltijd
+    heeft ook een 1 op veel relatie met afspraak. Het is namelijk mogelijk om
+    meerdere deelnemers aan 1 maaltijd te hebben. Een gebruiker is gekoppeld aan
+    een afspraak. Een gebruiker is ook gekoppeld aan een maaltijd op het moment
+    dat hij de maaltijd aanmaakt. Een gebruiker kan een maaltijd een review geven. 
+    Er is dus ook een relatie tussen review en gebruiker en review en maaltijd. 
   </p>
-  <div class="row mx-auto">
-    <div class="w-auto card mx-auto bg-grey">
+  <div class="row mx-auto w-auto">
+    <div class="w-auto card col-4 bg-grey">
       <div class="card-body">
-      <h5 class="card-title text-center">Studentenhuis</h5>
-      <ul class="list-group list-group-flush rounded">
-        <li class="list-group-item bg-grey">id: number</li>
-        <li class="list-group-item bg-grey">naam: string</li>
-        <li class="list-group-item bg-grey">straatnaam: string</li>
-        <li class="list-group-item bg-grey">huisnummer: number</li>
-        <li class="list-group-item bg-grey">postcode: string</li>
-        <li class="list-group-item bg-grey">plaats: string</li>
-        <li class="list-group-item bg-grey">telefoonnummer: string</li>
-      </ul>
+        <h5 class="card-title text-center">Studentenhuis</h5>
+        <ul class="list-group list-group-flush rounded">
+          <li class="list-group-item bg-grey">id: number</li>
+          <li class="list-group-item bg-grey">naam: string</li>
+          <li class="list-group-item bg-grey">straatnaam: string</li>
+          <li class="list-group-item bg-grey">huisnummer: number</li>
+          <li class="list-group-item bg-grey">postcode: string</li>
+          <li class="list-group-item bg-grey">plaats: string</li>
+          <li class="list-group-item bg-grey">telefoonnummer: string</li>
+        </ul>
+      </div>
     </div>
-    </div>
-    <div class="w-auto card mx-auto bg-grey">
+    <div class="w-auto card col-3 bg-grey mx-4">
       <div class="card-body">
-      <h5 class="card-title text-center">Maaltijd</h5>
-      <ul class="list-group list-group-flush rounded">
-        <li class="list-group-item bg-grey">id: number</li>
-        <li class="list-group-item bg-grey">studentenhuis: studenthome</li>
-        <li class="list-group-item bg-grey">naam: string</li>
-        <li class="list-group-item bg-grey">aanmaakdatum: date</li>
-        <li class="list-group-item bg-grey">aangebodendatum: datetime</li>
-        <li class="list-group-item bg-grey">organisator: user</li>
-        <li class="list-group-item bg-grey">prijs: number</li>
-        <li class="list-group-item bg-grey">allergie informatie: string</li>
-        <li class="list-group-item bg-grey">ingredienten: string [ ]</li>
-      </ul>
+        <h5 class="card-title text-center">Maaltijd</h5>
+        <ul class="list-group list-group-flush rounded">
+          <li class="list-group-item bg-grey">id: number</li>
+          <li class="list-group-item bg-grey">studentenhuis: studenthome</li>
+          <li class="list-group-item bg-grey">naam: string</li>
+          <li class="list-group-item bg-grey">aanmaakdatum: date</li>
+          <li class="list-group-item bg-grey">aangebodendatum: datetime</li>
+          <li class="list-group-item bg-grey">organisator: user</li>
+          <li class="list-group-item bg-grey">prijs: number</li>
+          <li class="list-group-item bg-grey">allergie informatie: string</li>
+          <li class="list-group-item bg-grey">ingredienten: string [ ]</li>
+        </ul>
+      </div>
     </div>
-    </div>
-    <div class=" w-auto card mx-auto bg-grey">
+    <div class="w-auto card col-4 bg-grey">
       <div class="card-body">
-      <h5 class="card-title text-center">Afspraak</h5>
-      <ul class="list-group list-group-flush rounded">
-        <li class="list-group-item bg-grey">id: number</li>
-        <li class="list-group-item bg-grey">gebruiker: user</li>
-        <li class="list-group-item bg-grey">aanmelddatum: date</li>
-      </ul>
-    </div>
-    </div>
-    <div class="w-auto card mx-auto bg-grey">
-      <div class="card-body">
-      <h5 class="card-title text-center">Gebruiker</h5>
-      <ul class="list-group list-group-flush rounded">
-        <li class="list-group-item bg-grey">id: number</li>
-        <li class="list-group-item bg-grey">voornaam: string</li>
-        <li class="list-group-item bg-grey">achternaam: string</li>
-        <li class="list-group-item bg-grey">studentnummer: number</li>
-        <li class="list-group-item bg-grey">geboortedatum: date</li>
-        <li class="list-group-item bg-grey">email: string</li>
-        <li class="list-group-item bg-grey">wachtwoord: string</li>
-      </ul>
+        <h5 class="card-title text-center">Gebruiker</h5>
+        <ul class="list-group list-group-flush rounded">
+          <li class="list-group-item bg-grey">id: number</li>
+          <li class="list-group-item bg-grey">voornaam: string</li>
+          <li class="list-group-item bg-grey">achternaam: string</li>
+          <li class="list-group-item bg-grey">studentnummer: number</li>
+          <li class="list-group-item bg-grey">geboortedatum: date</li>
+          <li class="list-group-item bg-grey">email: string</li>
+          <li class="list-group-item bg-grey">wachtwoord: string</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="row col-12">
-    <div class="col mx-auto my-4">
-    <br>
-      <h3>Afbeelding datamodel</h3>
-      <div class="text-center">
-      <img class="rounded" src="assets/images/datamodel.png" alt="datamodel" />
+  <div class="row my-4">
+    <div class="w-auto card mx-auto bg-grey">
+      <div class="card-body">
+        <h5 class="card-title text-center">Review</h5>
+        <ul class="list-group list-group-flush rounded">
+          <li class="list-group-item bg-grey">id: number</li>
+          <li class="list-group-item bg-grey">gebruiker: user</li>
+          <li class="list-group-item bg-grey">beoordeling: number</li>
+          <li class="list-group-item bg-grey">tekst: string</li>
+          <li class="list-group-item bg-grey">postdatum: date</li>
+          <li class="list-group-item bg-grey">maaltijd: meal</li>
+        </ul>
+      </div>
     </div>
+    <div class="w-auto card mx-auto bg-grey">
+      <div class="card-body">
+        <h5 class="card-title text-center">Afspraak</h5>
+        <ul class="list-group list-group-flush rounded">
+          <li class="list-group-item bg-grey">id: number</li>
+          <li class="list-group-item bg-grey">gebruiker: user</li>
+          <li class="list-group-item bg-grey">aanmelddatum: date</li>
+        </ul>
+      </div>
     </div>
   </div>
+    <div class="row col-12">
+      <div class="col  my-4">
+        <br />
+        <h3>Afbeelding datamodel</h3>
+        <div class="text-center">
+          <img
+            class="rounded"
+            src="assets/images/datamodel.png"
+            alt="datamodel"
+          />
+        </div>
+      </div>
+    </div>
 </div>
