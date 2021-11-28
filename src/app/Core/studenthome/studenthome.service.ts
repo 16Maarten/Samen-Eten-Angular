@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class StudenthomeService {
-  readonly studenthomes: Studenthome[]
+  studenthomes: Studenthome[]
   constructor() {
     this.studenthomes = [
       {
