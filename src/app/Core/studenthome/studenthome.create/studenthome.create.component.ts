@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Studenthome } from '../studenthome.model';
 import { StudenthomeService } from '../studenthome.service';
 
@@ -8,39 +9,27 @@ import { StudenthomeService } from '../studenthome.service';
   styleUrls: ['./studenthome.create.component.css']
 })
 export class StudenthomeCreateComponent implements OnInit {
-  id: string
-  studenthomeName: string
-  studenthomeStreetName: string
-  studenthomeHouseNumber: number
-  studenthomePostalCode: string
-  studenthomeResidence: string
-  studenthomePhoneNumber: string
+  studenthomeId: string | null = null;
 
-  constructor(private studenthomeService: StudenthomeService) {
-    this.id = studenthomeService.getNewId()
-    this.studenthomeName = ""
-    this.studenthomeStreetName = ""
-    this.studenthomePostalCode = ""
-    this.studenthomeHouseNumber = 0;
-    this.studenthomeResidence = ""
-    this.studenthomePhoneNumber = ""
-  }
+  public studenthome: Studenthome = {
+    _id : "",
+    name : "",
+    streetName : "",
+    postalCode : "",
+    houseNumber : 0,
+    residence : "",
+    phoneNumber : "",
+    owner : ""
+  };
+
+  constructor(private route: ActivatedRoute, private router: Router, private studenthomeService: StudenthomeService) {}
 
   ngOnInit(): void {
-    
   }
 
-  onSubmit(): void {
-    let newStudenthome: Studenthome = {
-      id: this.id,
-      name: this.studenthomeName,
-      streetName: this.studenthomeStreetName,
-      houseNumber: this.studenthomeHouseNumber,
-      postalCode: this.studenthomePostalCode,
-      residence: this.studenthomeResidence,
-      phoneNumber: this.studenthomePhoneNumber
-    }
-    this.studenthomeService.createStudenthome(newStudenthome)
+  onSubmit() {
+    this.studenthomeService.create(this.studenthome).subscribe(() => {
+      this.router.navigate(['..'], {relativeTo: this.route});
+    });
   }
-
 }

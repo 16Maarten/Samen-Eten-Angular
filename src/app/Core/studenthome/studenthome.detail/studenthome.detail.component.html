@@ -1,16 +1,16 @@
 <div class="container card mt-4">
-  <div class="row">
+  <div *ngIf="studenthome" class="row">
     <div class="col-6">
-    <h1 class="my-4">{{ studenthome?.name}}</h1>
+    <h1 class="my-4">{{ studenthome.name}}</h1>
     <ul class="list-group list-group-flush rounded">
-      <li class="list-group-item">Straatnaam: {{ studenthome?.streetName }}</li>
-      <li class="list-group-item">Huisnummer: {{ studenthome?.houseNumber }}</li>
-      <li class="list-group-item">Postcode: {{ studenthome?.postalCode }}</li>
-      <li class="list-group-item">Plaats: {{ studenthome?.residence }} </li>
-      <li class="list-group-item">Telefoonnummer: {{ studenthome?.phoneNumber }}</li>
+      <li class="list-group-item">Straatnaam: {{ studenthome.streetName }}</li>
+      <li class="list-group-item">Huisnummer: {{ studenthome.houseNumber }}</li>
+      <li class="list-group-item">Postcode: {{ studenthome.postalCode }}</li>
+      <li class="list-group-item">Plaats: {{ studenthome.residence }} </li>
+      <li class="list-group-item">Telefoonnummer: {{ studenthome.phoneNumber }}</li>
     </ul>
-    <a routerLink="./edit" class="btn btn-info my-2 mx-2 float-right">bewerken</a>
-    
+    <a class=" btn btn-danger my-2 mx-2 mx-2 w-25" (click)="remove()" >delete</a>
+    <a routerLink="./edit" class="btn btn-info w-25 my-2 mx-2 float-right">edit</a>
   </div>
     <div class="col-6">
       <img src="assets/images/studenthome.jpg" class="rounded img-fluid d-block mt-4 mb-4" alt="studenthome">

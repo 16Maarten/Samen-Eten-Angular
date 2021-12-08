@@ -5,7 +5,7 @@
     <form #studenthomeForm="ngForm" name="form" (ngSubmit)="studenthomeForm.form.valid && onSubmit()" novalidate>
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input [(ngModel)]="studenthomeName" name="name" #name="ngModel"
+          <input [(ngModel)]="studenthome.name" name="name" #name="ngModel"
           [ngClass]="{'is-invalid': name.invalid && name.touched}" required minlength="2" type="text"
           class="form-control mt-1" placeholder="write a name..." aria-label="Example text with button addon"
           aria-describedby="button-addon1">
@@ -16,7 +16,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Streetname</label>
-            <input [(ngModel)]="studenthomeStreetName" name="streetName" #streetName="ngModel"
+            <input [(ngModel)]="studenthome.streetName" name="streetName" #streetName="ngModel"
             [ngClass]="{'is-invalid': streetName.invalid && streetName.touched}" required minlength="3" type="text"
             class="form-control mt-1" placeholder="write a streetname..." aria-label="Example text with button addon"
             aria-describedby="button-addon1">
@@ -27,7 +27,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Housenumber</label>
-              <input [(ngModel)]="studenthomeHouseNumber" name="houseNumber" #houseNumber="ngModel"
+              <input [(ngModel)]="studenthome.houseNumber" name="houseNumber" #houseNumber="ngModel"
               [ngClass]="{'is-invalid': houseNumber.invalid && houseNumber.touched}"required type="number"
               class="form-control mt-1" placeholder="give a housenumber..." aria-label="Example text with button addon"
               aria-describedby="button-addon1">
@@ -37,7 +37,7 @@
               </div>
               <div class="mb-3">
                 <label class="form-label">Postalcode</label>
-                <input [(ngModel)]="studenthomePostalCode" name="postalCode" #postalCode="ngModel"
+                <input [(ngModel)]="studenthome.postalCode" name="postalCode" #postalCode="ngModel"
                 [ngClass]="{'is-invalid': postalCode.invalid && postalCode.touched}"required minlength="6" type="text"
                 class="form-control mt-1" placeholder="give a postalcode..." aria-label="Example text with button addon"
                 aria-describedby="button-addon1">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Residence</label>
-                  <input [(ngModel)]="studenthomeResidence" name="residence" #residence="ngModel"
+                  <input [(ngModel)]="studenthome.residence" name="residence" #residence="ngModel"
                   [ngClass]="{'is-invalid': residence.invalid && residence.touched}"required minlength="3" type="text"
                   class="form-control mt-1" placeholder="write a residence..." aria-label="Example text with button addon"
                   aria-describedby="button-addon1">
@@ -59,7 +59,7 @@
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Residence</label>
-                    <input [(ngModel)]="studenthomePhoneNumber" name="phoneNumber" #phoneNumber="ngModel"
+                    <input [(ngModel)]="studenthome.phoneNumber" name="phoneNumber" #phoneNumber="ngModel"
                     [ngClass]="{'is-invalid': phoneNumber.invalid && phoneNumber.touched}"required minlength="8" type="text"
                     class="form-control mt-1" placeholder="give a phonenumber..." aria-label="Example text with button addon"
                     aria-describedby="button-addon1">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { Studenthome } from '../studenthome.model';
 import { StudenthomeService } from '../studenthome.service';
 
@@ -10,15 +10,29 @@ import { StudenthomeService } from '../studenthome.service';
 })
 export class StudenthomeDetailComponent implements OnInit {
   studenthomeId: string | null = null;
-  studenthome: Studenthome | null = null;
+  studenthome: Studenthome | undefined;
 
-  constructor(private route: ActivatedRoute, private studenthomeService: StudenthomeService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private studenthomeService: StudenthomeService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.studenthomeId = params.get('id');
-      this.studenthome = this.studenthomeService.getStudenthomeById(String(this.studenthomeId));
+      if (this.studenthomeId != null) {
+        this.studenthomeService
+          .read(this.studenthomeId)
+          .subscribe((studenthome) => {
+            this.studenthome = studenthome;
+          });
+      }
     });
+  }
+
+  remove(): void {
+    if (this.studenthomeId != null) {
+      this.studenthomeService.delete(this.studenthomeId).subscribe(() => {
+        this.router.navigate(['../']);
+      });
+    }
   }
 
 }

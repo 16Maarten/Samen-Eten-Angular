@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StudenthomeService } from './studenthome.service';
 import { Studenthome } from './studenthome.model';
 
-describe('StudenthomeService', () => {
+/*describe('StudenthomeService', () => {
   let service: StudenthomeService;
 
   beforeEach(() => {
@@ -84,4 +84,4 @@ describe('StudenthomeService', () => {
       service.removeStudenthome("1")
       expect(service.getStudenthomes().length).toBe(1)
   })
-});
+});*/

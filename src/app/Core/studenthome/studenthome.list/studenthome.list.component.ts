@@ -11,10 +11,17 @@ export class StudenthomeListComponent implements OnInit {
   constructor(private studenthomeService: StudenthomeService) { }
 
   ngOnInit(): void {
-    this.studenthomes = this.studenthomeService.getStudenthomes();
+    this.studenthomeService.list().subscribe((studenthomes) => {
+      if (studenthomes == null) {
+        this.studenthomes = [];
+      } else {
+        this.studenthomes = studenthomes;
+      }
+    });
+
   }
 
   onDelete(id: string): void {
-    this.studenthomeService.removeStudenthome(id)
+   /* this.studenthomeService.removeStudenthome(id)*/
   }
 }

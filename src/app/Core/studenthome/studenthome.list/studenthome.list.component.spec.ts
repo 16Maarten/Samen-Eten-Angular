@@ -34,13 +34,14 @@ describe('StudenthomeListComponent', () => {
     expect(component.studenthomes.length).toBe(0)
     const name = 'Studentenvereniging Test'
     component.studenthomes.push({
-        id: "1",
+        _id: "1",
         name: "Studentenvereniging Test",
         streetName: "lovensdijkstraat",
         houseNumber: 61,
         postalCode: "5634JF",
         residence: "Test",
-        phoneNumber:"0693549674"
+        phoneNumber:"0693549674",
+        owner:""
     })
     expect(component.studenthomes.length).toBe(1)
     expect(component.studenthomes[0].name).toBe(name)
