@@ -17,7 +17,7 @@ export class StudenthomeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.studenthomeId = params.get('id');
-      this.studenthome = this.studenthomeService.getStudenthomeById(Number(this.studenthomeId));
+      this.studenthome = this.studenthomeService.getStudenthomeById(String(this.studenthomeId));
     });
   }
 

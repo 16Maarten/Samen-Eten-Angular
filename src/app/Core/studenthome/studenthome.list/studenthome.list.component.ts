@@ -14,7 +14,7 @@ export class StudenthomeListComponent implements OnInit {
     this.studenthomes = this.studenthomeService.getStudenthomes();
   }
 
-  onDelete(id: number): void {
+  onDelete(id: string): void {
     this.studenthomeService.removeStudenthome(id)
   }
 }

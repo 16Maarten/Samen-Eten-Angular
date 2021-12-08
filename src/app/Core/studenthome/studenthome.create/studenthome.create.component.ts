@@ -8,7 +8,7 @@ import { StudenthomeService } from '../studenthome.service';
   styleUrls: ['./studenthome.create.component.css']
 })
 export class StudenthomeCreateComponent implements OnInit {
-  id: number
+  id: string
   studenthomeName: string
   studenthomeStreetName: string
   studenthomeHouseNumber: number

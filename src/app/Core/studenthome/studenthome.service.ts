@@ -10,7 +10,7 @@ export class StudenthomeService {
   constructor() {
     this.studenthomes = [
       {
-          id: 1,
+          id: "1",
           name: "Studentenvereniging Breda",
           streetName: "lovensdijkstraat",
           houseNumber: 61,
@@ -19,7 +19,7 @@ export class StudenthomeService {
           phoneNumber:"0693549674"
       },
       {
-          id: 2,
+          id: "2",
           name: "Studentenvereniging Leiden",
           streetName: "leidseplein",
           houseNumber: 45,
@@ -28,7 +28,7 @@ export class StudenthomeService {
           phoneNumber:"0694638745"
       },
       {
-          id: 3,
+          id: "3",
           name: "Studentenvereniging Delft",
           streetName: "kievietlaan",
           houseNumber: 22,
@@ -37,7 +37,7 @@ export class StudenthomeService {
           phoneNumber:"0685376532"
       },
       {
-          id: 4,
+          id: "4",
           name: "Studentenvereniging Rotterdam",
           streetName: "gootstraat",
           houseNumber: 67,
@@ -46,7 +46,7 @@ export class StudenthomeService {
           phoneNumber:"0687549821"
       },
       {
-          id: 5,
+          id: "5",
           name: "Studentenvereniging Eindhoven",
           streetName: "copernicusstraat",
           houseNumber: 21,
@@ -66,7 +66,7 @@ export class StudenthomeService {
     this.studenthomes[index] = item
   }
 
-  removeStudenthome(id: number) {
+  removeStudenthome(id: string) {
     const index = this.studenthomes.findIndex((p) => p.id == id)
     this.studenthomes.splice(index, 1)
   }
@@ -81,12 +81,12 @@ export class StudenthomeService {
     return of(this.studenthomes);
   }
 
-  getStudenthomeById(id: number): Studenthome {
+  getStudenthomeById(id: string): Studenthome {
     console.log('getUserById aangeroepen');
     return this.studenthomes.filter((studenthome) => studenthome.id === id)[0];
   }
 
   getNewId() {
-    return this.studenthomes[this.studenthomes.length - 1].id + 1
+    return (this.studenthomes[this.studenthomes.length - 1].id + 1).toString()
   }
 }

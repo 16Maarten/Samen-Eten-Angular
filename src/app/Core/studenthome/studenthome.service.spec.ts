@@ -11,7 +11,7 @@ describe('StudenthomeService', () => {
       service.studenthomes = []
       
       service.createStudenthome({
-        id: 1,
+        id: "1",
         name: "Studentenvereniging Test",
         streetName: "lovensdijkstraat",
         houseNumber: 61,
@@ -20,7 +20,7 @@ describe('StudenthomeService', () => {
         phoneNumber:"0693549674"
       })
       service.createStudenthome({
-        id: 2,
+        id: "2",
         name: "Studentenvereniging Test2",
         streetName: "leidseplein",
         houseNumber: 45,
@@ -57,14 +57,14 @@ describe('StudenthomeService', () => {
   })
 
   it('should return a studenthome with the id of 1 and a name of Studentenvereniging Test', () => {
-      expect(service.getStudenthomeById(1)?.name).toBe("Studentenvereniging Test")
-      expect(service.getStudenthomeById(1)?.id).toBe(1)
+      expect(service.getStudenthomeById("1")?.name).toBe("Studentenvereniging Test")
+      expect(service.getStudenthomeById("1")?.id).toBe("1")
   })
 
   
   it('should update the name of studenthome with id 1 to Studentenvereniging Update', () => {
-      expect(service.getStudenthomeById(1)?.name).toBe('Studentenvereniging Test')
-      const updateId = 1
+      expect(service.getStudenthomeById("1")?.name).toBe('Studentenvereniging Test')
+      const updateId = "1"
       const updatedStudenthome: Studenthome = {
           id: updateId,
           name: "Studentenvereniging Update",
@@ -81,7 +81,7 @@ describe('StudenthomeService', () => {
 
   
   it('should delete studenthome with id 1', () => {
-      service.removeStudenthome(1)
+      service.removeStudenthome("1")
       expect(service.getStudenthomes().length).toBe(1)
   })
 });

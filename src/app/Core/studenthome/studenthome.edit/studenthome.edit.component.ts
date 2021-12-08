@@ -12,7 +12,7 @@ export class StudenthomeEditComponent implements OnInit {
   studenthomeId: string | null = null;
   studenthome: Studenthome | null = null;
 
-  id: number
+  id: string
   studenthomeName: string
   studenthomeStreetName: string
   studenthomeHouseNumber: number
@@ -33,13 +33,24 @@ export class StudenthomeEditComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.studenthomeId = params.get('id');
-      this.studenthome = this.studenthomeService.getStudenthomeById(Number(this.studenthomeId));
+      this.studenthome = this.studenthomeService.getStudenthomeById(String(this.studenthomeId));
+      if (this.studenthome !== undefined) {
+        this.id = this.studenthome.id
+        this.studenthomeName = this.studenthome.name
+        this.studenthomeStreetName = this.studenthome.streetName
+        this.studenthomePostalCode = this.studenthome.postalCode
+        this.studenthomeHouseNumber = this.studenthome.houseNumber;
+        this.studenthomeResidence = this.studenthome.residence
+        this.studenthomePhoneNumber = this.studenthome.phoneNumber
+      }
+
+
     });
   }
 
   onSubmit(): void {
     let newStudenthome: Studenthome = {
-      id: this.studenthome?.id || 0,
+      id: this.studenthome?.id || "0",
       name: this.studenthomeName,
       streetName: this.studenthomeStreetName,
       houseNumber: this.studenthomeHouseNumber,

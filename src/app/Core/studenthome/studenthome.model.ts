@@ -1,5 +1,5 @@
 export interface Studenthome {
-    id: number;
+    id: string;
     name: string;
     streetName: string;
     houseNumber: number;
