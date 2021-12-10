@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Studenthome } from '../studenthome.model';
 import { StudenthomeService } from '../studenthome.service';
+import { AuthenticationService } from '../../user/authentication.service';
 
 @Component({
   selector: 'app-studenthome.create',
@@ -8,39 +10,32 @@ import { StudenthomeService } from '../studenthome.service';
   styleUrls: ['./studenthome.create.component.css']
 })
 export class StudenthomeCreateComponent implements OnInit {
-  id: number
-  studenthomeName: string
-  studenthomeStreetName: string
-  studenthomeHouseNumber: number
-  studenthomePostalCode: string
-  studenthomeResidence: string
-  studenthomePhoneNumber: string
 
-  constructor(private studenthomeService: StudenthomeService) {
-    this.id = studenthomeService.getNewId()
-    this.studenthomeName = ""
-    this.studenthomeStreetName = ""
-    this.studenthomePostalCode = ""
-    this.studenthomeHouseNumber = 0;
-    this.studenthomeResidence = ""
-    this.studenthomePhoneNumber = ""
+  public studenthome: Studenthome = {
+    _id : undefined,
+    name : "",
+    streetName : "",
+    postalCode : "",
+    houseNumber : 0,
+    residence : "",
+    phoneNumber : "",
+    owner : ""
+  };
+
+  constructor(private route: ActivatedRoute, private router: Router, private studenthomeService: StudenthomeService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
-    
+    this.authenticationService.currentUser$.subscribe((user) => {
+      if (user._id != undefined) {
+        this.studenthome.owner = user._id.toString();
+      }
+    })
   }
 
-  onSubmit(): void {
-    let newStudenthome: Studenthome = {
-      id: this.id,
-      name: this.studenthomeName,
-      streetName: this.studenthomeStreetName,
-      houseNumber: this.studenthomeHouseNumber,
-      postalCode: this.studenthomePostalCode,
-      residence: this.studenthomeResidence,
-      phoneNumber: this.studenthomePhoneNumber
-    }
-    this.studenthomeService.createStudenthome(newStudenthome)
+  onSubmit() {
+    this.studenthomeService.create(this.studenthome).subscribe(() => {
+      this.router.navigate(['..'], {relativeTo: this.route});
+    });
   }
-
 }

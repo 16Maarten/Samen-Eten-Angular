@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Studenthome } from '../studenthome.model';
 import { StudenthomeService } from '../studenthome.service';
 
@@ -10,44 +10,40 @@ import { StudenthomeService } from '../studenthome.service';
 })
 export class StudenthomeEditComponent implements OnInit {
   studenthomeId: string | null = null;
-  studenthome: Studenthome | null = null;
 
-  id: number
-  studenthomeName: string
-  studenthomeStreetName: string
-  studenthomeHouseNumber: number
-  studenthomePostalCode: string
-  studenthomeResidence: string
-  studenthomePhoneNumber: string
+  public studenthome: Studenthome = {
+    _id : "",
+    name : "",
+    streetName : "",
+    postalCode : "",
+    houseNumber : 0,
+    residence : "",
+    phoneNumber : "",
+    owner:""
+  };
 
-  constructor(private route: ActivatedRoute, private studenthomeService: StudenthomeService) {
-    this.id = studenthomeService.getNewId()
-    this.studenthomeName = ""
-    this.studenthomeStreetName = ""
-    this.studenthomePostalCode = ""
-    this.studenthomeHouseNumber = 0;
-    this.studenthomeResidence = ""
-    this.studenthomePhoneNumber = ""
+  constructor(private route: ActivatedRoute, private router: Router, private studenthomeService: StudenthomeService) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.studenthomeId = params.get('id');
-      this.studenthome = this.studenthomeService.getStudenthomeById(Number(this.studenthomeId));
+      this.route.paramMap.subscribe((params) => {
+        this.studenthomeId = params.get('id');
+        if (this.studenthomeId) {
+          // Ophalen bestaande user
+          this.studenthomeService
+            .read(this.studenthomeId)
+            .subscribe((studenthome) => {
+              this.studenthome = studenthome;
+            });
+        } 
+      });
     });
   }
 
-  onSubmit(): void {
-    let newStudenthome: Studenthome = {
-      id: this.studenthome?.id || 0,
-      name: this.studenthomeName,
-      streetName: this.studenthomeStreetName,
-      houseNumber: this.studenthomeHouseNumber,
-      postalCode: this.studenthomePostalCode,
-      residence: this.studenthomeResidence,
-      phoneNumber: this.studenthomePhoneNumber
-    }
-    this.studenthomeService.updateStudenthome(newStudenthome)
+  onSubmit() {
+      this.studenthomeService.update(this.studenthome).subscribe(() => {
+        this.router.navigate(['..'], {relativeTo: this.route});
+      });
   }
-
 }

@@ -1,0 +1,61 @@
+<div class="container card mt-4">
+    <div *ngIf="meal" class="row">
+      <div class="col-6">
+      <h1 class="my-4">{{ meal.name}}</h1>
+      <ul class="list-group list-group-flush rounded">
+        <li class="list-group-item">Studenthome: {{ studenthome?.name }}</li>
+        <li class="list-group-item">Offerd on: {{ formatDate(meal.offerdOn) }}</li>
+        <li class="list-group-item">Organizer: {{ user?.firstName }} {{ user?.lastName }}</li>
+        <li class="list-group-item">Price: {{ meal.price }} </li>
+        <li class="list-group-item">Allergies: {{ meal.allergies }}</li>
+        <li class="list-group-item">Ingredients: {{ meal.ingredients }}</li>
+        <li class="list-group-item">Creation date: {{ formatDate(meal.creationDate) }}</li>
+      </ul>
+      <a *ngIf="userEdit | async" class=" btn btn-danger my-2 mx-2 mx-2 w-25" (click)="remove()" >delete</a>
+      <a *ngIf="userEdit | async" routerLink="./edit" class="btn btn-info w-25 my-2 mx-2 float-right">edit</a>
+    </div>
+    <div class="col-sm-6 my-2">
+    <div>
+    <h1 class="my-4">Reviews</h1>
+    <div *ngFor="let review of meal.reviews" class="my-2">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-left">
+            <h5 class="card-title">{{ formatDate(review.creationDate) }}</h5>
+            <div>
+                <strong>Rating: </strong> 
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+                  <ngb-rating [(rate)]="review.rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+            </div>
+            <p class="card-text">
+              <strong>Review: </strong> {{review.text}}<br>
+            </p>
+            </div>
+            <div class="float-right mt-5">
+            <button  *ngIf="(participant?._id == review.user )" class="btn btn-info mx-2" routerLink="review/{{ review._id }}/edit">edit</button>
+            <button *ngIf="(participant?._id == review.user )" class="btn btn-danger" (click)="removeReview()">delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a *ngIf="!(userEdit | async)" class="btn btn-info my-2 col-12" routerLink="review/new">add</a>
+    </div>
+    <div>
+        <h1 class="my-4">Participants</h1>
+        <div *ngFor="let Participant of meal.participants" class="my-2">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="my-2 mx-2 d-inline-block">{{Participant.user.firstName}} {{Participant.user.lastName}}</h5>
+                <button *ngIf="(participant?._id == Participant.user._id)" class=" btn btn-danger float-right my-2 mx-2" (click)="removeParticipant()" >delete</button>
+              </div>
+            </div>
+          </div>
+          <a *ngIf="!(userEdit | async)" class="btn btn-info my-2 col-12" (click)="participate()" aria-current="page">register</a>
+        </div>
+    </div>
+  </div>
+</div>

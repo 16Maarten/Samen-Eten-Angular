@@ -2,3 +2,22 @@
 .bg-grey {
   background-color: #597380;
 }
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 4rem; 
+  box-sizing: border-box;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 4rem;
+}
+
+.text-white {
+  color: white;
+}
+

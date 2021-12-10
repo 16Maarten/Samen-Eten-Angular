@@ -1,7 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://jouw-eigen-server.herokuapp.com/api',
-
-
-
+  apiUrl: 'https://sameneten-api.herokuapp.com/api/',
 };

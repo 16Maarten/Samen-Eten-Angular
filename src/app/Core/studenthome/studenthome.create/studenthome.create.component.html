@@ -1,31 +1,78 @@
-<div class="container bg-info rounded my-2">
-    <h1 class="text-center">studentenhuis aanmaken</h1>
-    <form #studenthomeForm="ngForm" name="form">
+<div class="container card mt-4">
+  <div class="row my-2">
+    <div class="col-6">
+    <h1 class="text-center">Studenthome</h1>
+    <form #studenthomeForm="ngForm" name="form" (ngSubmit)="studenthomeForm.form.valid && onSubmit()" novalidate>
         <div class="mb-3">
-            <label class="form-label">Naam</label>
-            <input type="text" name="name" class="form-control" [(ngModel)]="studenthomeName">
+          <label class="form-label">Name</label>
+          <input [(ngModel)]="studenthome.name" name="name" #name="ngModel"
+          [ngClass]="{'is-invalid': name.invalid && name.touched}" required minlength="2" type="text"
+          class="form-control mt-1" placeholder="write a name..." aria-label="Example text with button addon"
+          aria-describedby="button-addon1">
+      <div *ngIf="name.invalid && name.touched" class="text-left mx-1 mt-1">
+          <p class="validation-error">Name is a required field. Give your studenthome a name of at least 2 characters
+              long!</p>
+      </div>
           </div>
           <div class="mb-3">
-            <label class="form-label">Straatnaam</label>
-            <input type="text" class="form-control" name="streetName" [(ngModel)]="studenthomeStreetName">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">huisnummer</label>
-            <input type="number" class="form-control" name="houseNumber" [(ngModel)]="studenthomeHouseNumber">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Postcode</label>
-            <input type="text" class="form-control" name="postalCode" [(ngModel)]="studenthomePostalCode">
-          </div>
-        <div class="mb-3">
-          <label class="form-label">Plaats</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" name="residence" [(ngModel)]="studenthomeResidence">
+            <label class="form-label">Streetname</label>
+            <input [(ngModel)]="studenthome.streetName" name="streetName" #streetName="ngModel"
+            [ngClass]="{'is-invalid': streetName.invalid && streetName.touched}" required minlength="3" type="text"
+            class="form-control mt-1" placeholder="write a streetname..." aria-label="Example text with button addon"
+            aria-describedby="button-addon1">
+        <div *ngIf="streetName.invalid && streetName.touched" class="text-left mx-1 mt-1">
+            <p class="validation-error">Streetname is a required field. Give your studenthome a streetname of at least 3 characters
+                long!</p>
         </div>
-        <div class="mb-3">
-            <label class="form-label">telefoonnummer</label>
-            <input type="tel" class="form-control" name="phoneNumber" [(ngModel)]="studenthomePhoneNumber">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Housenumber</label>
+              <input [(ngModel)]="studenthome.houseNumber" name="houseNumber" #houseNumber="ngModel"
+              [ngClass]="{'is-invalid': houseNumber.invalid && houseNumber.touched}"required type="number"
+              class="form-control mt-1" placeholder="give a housenumber..." aria-label="Example text with button addon"
+              aria-describedby="button-addon1">
+          <div *ngIf="houseNumber.invalid && houseNumber.touched" class="text-left mx-1 mt-1">
+              <p class="validation-error">Housenumber is a required field.</p>
           </div>
-        <a type="submit" routerLink="../" (click)="onSubmit()" class=" bg-grey btn btn-dark ">toevoegen</a>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Postalcode</label>
+                <input [(ngModel)]="studenthome.postalCode" name="postalCode" #postalCode="ngModel"
+                [ngClass]="{'is-invalid': postalCode.invalid && postalCode.touched}"required minlength="6" type="text"
+                class="form-control mt-1" placeholder="give a postalcode..." aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+            <div *ngIf="postalCode.invalid && postalCode.touched" class="text-left mx-1 mt-1">
+                <p class="validation-error">Postalcode is a required field. Give your studenthome a postalcode of at least 6 characters
+                  long!</p>
+            </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Residence</label>
+                  <input [(ngModel)]="studenthome.residence" name="residence" #residence="ngModel"
+                  [ngClass]="{'is-invalid': residence.invalid && residence.touched}"required minlength="3" type="text"
+                  class="form-control mt-1" placeholder="write a residence..." aria-label="Example text with button addon"
+                  aria-describedby="button-addon1">
+              <div *ngIf="residence.invalid && residence.touched" class="text-left mx-1 mt-1">
+                  <p class="validation-error">Residence is a required field. Give your studenthome a residence of at least 3 characters
+                    long!</p>
+              </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Residence</label>
+                    <input [(ngModel)]="studenthome.phoneNumber" name="phoneNumber" #phoneNumber="ngModel"
+                    [ngClass]="{'is-invalid': phoneNumber.invalid && phoneNumber.touched}"required minlength="8" type="text"
+                    class="form-control mt-1" placeholder="give a phonenumber..." aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">Phonenumber is a required field. Give your studenthome a phonenumber of at least 8 characters
+                      long!</p>
+                </div>
+                    </div>
+        <button type="submit" routerLink="../" (click)="onSubmit()" class="btn w-25 btn-info float-right" [disabled]="studenthomeForm.invalid">save</button>
       </form>
-      <br>
+    </div>
+    <div class="col-6">
+      <img src="assets/images/studenthomeVertical.jpg" class="rounded img-fluid d-block mt-2 mb-2" alt="studenthome">
+    </div>
+  </div>
 </div>

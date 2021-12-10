@@ -1,0 +1,75 @@
+<div class="container ">
+    <div class="row justify-content-center my-5">
+      <div class="col-sm-10 col-md-8 col-lg-6 my-5 my-auto">
+        <div class="form-bg card p-5">
+          <h2>Register</h2>
+          <form class="form-signin" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Firstname</label>
+                <input [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel"
+                [ngClass]="{'is-invalid': firstName.invalid && firstName.touched}" required minlength="2" type="text"
+                class="form-control mt-1" placeholder="firstname..." aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+            <div *ngIf="firstName.invalid && firstName.touched" class="text-left mx-1 mt-1">
+                <p class="validation-error">Firstname is a required field.Your firstname must have at least 2 characters!</p>
+            </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">LastName</label>
+                    <input [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel"
+                    [ngClass]="{'is-invalid': lastName.invalid && lastName.touched}" required minlength="2" type="text"
+                    class="form-control mt-1" placeholder="lastname..." aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="lastName.invalid && lastName.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">Lastname is a required field.Your lastname must have at least 2 characters!</p>
+                </div>
+                    </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input [(ngModel)]="user.email" name="name" #email="ngModel"
+                [ngClass]="{'is-invalid': email.invalid && email.touched}" required minlength="5" type="email"
+                class="form-control mt-1" placeholder="test@test.nl" aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+            <div *ngIf="email.invalid && email.touched" class="text-left mx-1 mt-1">
+                <p class="validation-error">Email is a required field. Your email must have at least 5 characters!</p>
+            </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Studentnumber</label>
+                    <input [(ngModel)]="user.studentNumber" name="studentNumber" #studentNumber="ngModel"
+                    [ngClass]="{'is-invalid': studentNumber.invalid && studentNumber.touched}" required [min]="1000000" type="number"
+                    class="form-control mt-1" placeholder="test@test.nl" aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="studentNumber.invalid && studentNumber.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">Studentnumber is a required field. Your Studentnumber must have at least 5 characters!</p>
+                </div>
+                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Birthday</label>
+                    <input [(ngModel)]="user.birthday" name="birthday" #birthday="ngModel"
+                    [ngClass]="{'is-invalid': birthday.invalid && birthday.touched}" required type="date"
+                    class="form-control mt-1" placeholder="password" aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="birthday.invalid && birthday.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">Date is a required field.</p>
+                </div>
+               </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input [(ngModel)]="user.password" name="password" #password="ngModel"
+                    [ngClass]="{'is-invalid': password.invalid && password.touched}" required minlength="8" type="password"
+                    class="form-control mt-1" placeholder="password" aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="password.invalid && password.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">password is a required field. Your password must have at least 8 characters!</p>
+                </div>
+               </div>
+  
+               <button class="btn w-100 btn-info float-right" [disabled]="registerForm.invalid">Register</button>
+               <button routerLink="/login"  class="btn w-100 btn-info float-right my-4" >Login</button>
+          </form>
+          <app-alert></app-alert>
+        </div>
+      </div>
+    </div>
+  </div>
