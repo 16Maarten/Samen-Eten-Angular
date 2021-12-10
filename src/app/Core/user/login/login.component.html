@@ -1,0 +1,36 @@
+<div class="container v-100">
+    <div class="row justify-content-center mt-5">
+      <div class="col-sm-10 col-md-8 col-lg-6 my-5 my-auto">
+        <div class="form-bg card p-5">
+          <h2>Login</h2>
+          <form class="form-signin" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input [(ngModel)]="user.email" name="name" #email="ngModel"
+                [ngClass]="{'is-invalid': email.invalid && email.touched}" required minlength="5" type="email"
+                class="form-control mt-1" placeholder="write a name..." aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+            <div *ngIf="email.invalid && email.touched" class="text-left mx-1 mt-1">
+                <p class="validation-error">Email is a required field.Your email must have at least 5 characters!</p>
+            </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input [(ngModel)]="user.password" name="password" #password="ngModel"
+                    [ngClass]="{'is-invalid': password.invalid && password.touched}" required minlength="7" type="password"
+                    class="form-control mt-1" placeholder="password" aria-label="Example text with button addon"
+                    aria-describedby="button-addon1">
+                <div *ngIf="password.invalid && password.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">password is a required field. Your password must have at least 7 characters!</p>
+                </div>
+               </div>
+  
+               <button type="submit" (click)="onSubmit()" class="btn w-100 btn-info float-right" [disabled]="loginForm.invalid">Login</button>
+               <button routerLink="/register"  class="btn w-100 btn-info float-right my-4" >Register</button>
+          </form>
+          <app-alert></app-alert>
+        </div>
+      </div>
+    </div>
+  </div>
+  

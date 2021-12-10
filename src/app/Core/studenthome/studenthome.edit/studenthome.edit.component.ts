@@ -22,7 +22,8 @@ export class StudenthomeEditComponent implements OnInit {
     owner:""
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private studenthomeService: StudenthomeService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private studenthomeService: StudenthomeService) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

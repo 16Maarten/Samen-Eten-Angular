@@ -20,8 +20,4 @@ export class StudenthomeListComponent implements OnInit {
     });
 
   }
-
-  onDelete(id: string): void {
-   /* this.studenthomeService.removeStudenthome(id)*/
-  }
 }

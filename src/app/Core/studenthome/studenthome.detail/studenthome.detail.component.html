@@ -9,8 +9,8 @@
       <li class="list-group-item">Plaats: {{ studenthome.residence }} </li>
       <li class="list-group-item">Telefoonnummer: {{ studenthome.phoneNumber }}</li>
     </ul>
-    <a class=" btn btn-danger my-2 mx-2 mx-2 w-25" (click)="remove()" >delete</a>
-    <a routerLink="./edit" class="btn btn-info w-25 my-2 mx-2 float-right">edit</a>
+    <a *ngIf="userEdit | async" class=" btn btn-danger my-2 mx-2 mx-2 w-25" (click)="remove()" >delete</a>
+    <a *ngIf="userEdit | async" routerLink="./edit" class="btn btn-info w-25 my-2 mx-2 float-right">edit</a>
   </div>
     <div class="col-6">
       <img src="assets/images/studenthome.jpg" class="rounded img-fluid d-block mt-4 mb-4" alt="studenthome">

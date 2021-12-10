@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute , Router } from '@angular/router';
 import { Studenthome } from '../studenthome.model';
 import { StudenthomeService } from '../studenthome.service';
+import { AuthenticationService } from '../../user/authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-studenthome.detail',
@@ -11,8 +13,8 @@ import { StudenthomeService } from '../studenthome.service';
 export class StudenthomeDetailComponent implements OnInit {
   studenthomeId: string | null = null;
   studenthome: Studenthome | undefined;
-
-  constructor(private route: ActivatedRoute,private router: Router, private studenthomeService: StudenthomeService) { }
+  userEdit: Observable<boolean> | undefined
+  constructor(private route: ActivatedRoute,private router: Router, private studenthomeService: StudenthomeService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -22,6 +24,10 @@ export class StudenthomeDetailComponent implements OnInit {
           .read(this.studenthomeId)
           .subscribe((studenthome) => {
             this.studenthome = studenthome;
+            if(this.studenthome != undefined){
+              this.userEdit = this.authenticationService.userEdit(this.studenthome.owner)
+              console.log(this.userEdit)
+            }
           });
       }
     });

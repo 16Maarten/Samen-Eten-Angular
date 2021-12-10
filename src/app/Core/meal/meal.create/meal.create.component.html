@@ -1,0 +1,66 @@
+<div class="container card mt-4">
+    <div class="row my-2">
+      <div class="col-6">
+      <h1 class="text-center">Meal</h1>
+      <form #mealForm="ngForm" name="form" (ngSubmit)="mealForm.form.valid && onSubmit()" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input [(ngModel)]="meal.name" name="name" #name="ngModel"
+            [ngClass]="{'is-invalid': name.invalid && name.touched}" required minlength="2" type="text"
+            class="form-control mt-1" placeholder="write a name..." aria-label="Example text with button addon"
+            aria-describedby="button-addon1">
+        <div *ngIf="name.invalid && name.touched" class="text-left mx-1 mt-1">
+            <p class="validation-error">Name is a required field. Give your meal a name of at least 2 characters
+                long!</p>
+        </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Studenthome</label>
+              <select class="form-control" name="studenthome" [(ngModel)]="meal.studenthome" #Studenthome="ngModel" required>
+                <option *ngFor="let studenthome of studenthomes" [value]= "studenthome._id">{{studenthome.name}}</option>
+              </select>
+           </div>
+           <div class="mb-3">
+            <label class="form-label">Offerd on</label>
+            <input [(ngModel)]="meal.offerdOn" name="offerdOn" #offerdOn="ngModel"
+            [ngClass]="{'is-invalid':  offerdOn.invalid && offerdOn.touched}" required type="datetime-local"
+            class="form-control mt-1" placeholder="write a name..." aria-label="Example text with button addon"
+            aria-describedby="button-addon1">
+            <div *ngIf="offerdOn.invalid && offerdOn.touched" class="text-left mx-1 mt-1">
+            <p class="validation-error">OfferdOn is a required field.</p>
+            </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input [(ngModel)]="meal.price" name="price" #price="ngModel"
+                [ngClass]="{'is-invalid': price.invalid}" required min="0" type="number"
+                class="form-control mt-1" placeholder="give a price..." aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+                <div *ngIf="price.invalid" class="text-left mx-1 mt-1">
+                <p class="validation-error">Price is has to be minimal 0</p>
+                </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Allergies</label>
+                    <input [(ngModel)]="meal.allergies" name="allergies" #price="ngModel"  class="form-control mt-1" placeholder="Allergies?">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ingredients</label>
+                    <div class="input-group">
+                    <textarea [(ngModel)]="ingredientsList" name="ingredients" #ingredients="ngModel"
+                    [ngClass]="{'is-invalid': ingredients.invalid && ingredients.touched}" required minlength="2" type="text"
+                    class="form-control mt-1" placeholder="write the ingredients seperated by a comma" aria-label="Example text with button addon"
+                    aria-describedby="button-addon1"></textarea>
+                </div>
+                <div *ngIf="ingredients.invalid && ingredients.touched" class="text-left mx-1 mt-1">
+                    <p class="validation-error">Ingredients is a required field. Give your meal minimal 1 ingredient</p>
+                </div>
+                    </div>
+          <button type="submit" routerLink="../" (click)="onSubmit()" class="btn w-25 btn-info float-right" [disabled]="mealForm.invalid">save</button>
+        </form>
+      </div>
+      <div class="col-6">
+        <img src="assets/images/studenthomeVertical.jpg" class="rounded img-fluid d-block mt-2 mb-2" alt="studenthome">
+      </div>  
+    </div>
+  </div>

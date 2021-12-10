@@ -1,39 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-info mx-auto">
-  <div class="container">
-    <a class="navbar-brand" routerLink="studenthome">Samen Eten</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar d-flex flex navbar-expand-lg navbar-dark justify-content-between align-items-center bg-info">
+  <div *ngIf="loggedInUser$ | async as user" class="container">
+    <a class="navbar-brand">Samen Eten</a>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul *ngIf="user.email != null" class="navbar-nav">
         <li class="nav-item">
           <a
             class="nav-link"
             routerLink="studenthome"
             routerLinkActive="actieve-link"
-            aria-current="page"
             >Studenthome</a
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="users"
-            routerLinkActive="actieve-link"
-            aria-current="page"
-            >Users</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Meals</a>
+          <a class="nav-link"
+          routerLink="meals"
+          routerLinkActive="actieve-link"
+          
+            >Meals</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="about" routerLinkActive="actieve-link"
@@ -41,6 +24,20 @@
           >
         </li>
       </ul>
+      <div class=" nav col-md-4 justify-content-end ml-auto">
+        <div *ngIf="user.email != null" class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul ngbNav #nav="ngbNav" class="text-white ml-auto">
+            <li ngbDropdown class="nav-item">
+              <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>{{ user.email }}</a>
+              <div ngbDropdownMenu>
+                <button ngbDropdownItem class="dropdown-item" [routerLink]="['/profile']">Profile</button>
+                <button ngbDropdownItem class="dropdown-item" (click)="logout()">Logout</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a *ngIf="user.email == null" class="btn btn-outline-light" [routerLink]="['/login']">Login</a>
+      </div>
     </div>
   </div>
 </nav>

@@ -1,15 +1,18 @@
 import { Entity } from './entity.model';
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { map, catchError, tap, mergeMap, take } from 'rxjs/operators';
+import { Alert } from '../alert/alert.service';
+import { AuthenticationService } from '../../Core/user/authentication.service';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
  */
-const httpOptions = {
-  observe: 'body',
-  responseType: 'json',
-};
+
 
 /**
  * Generic service class for communicating objects to/from services.
@@ -19,11 +22,20 @@ export abstract class EntityService<T extends Entity> {
   /**
    * Service constructor.
    */
+   httpOptions = {
+    observe: 'body',
+    responseType: 'json',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: ''
+    }
+  };
 
   constructor(
     public readonly http: HttpClient,
     public readonly url: string,
-    public readonly endpoint: string
+    public readonly endpoint: string,
+    private authenticationService: AuthenticationService
   ) {}
 
   /**
@@ -34,10 +46,12 @@ export abstract class EntityService<T extends Entity> {
   public list(options?: any): Observable<T[] | null> {
     const endpoint = `${this.url}${this.endpoint}`;
     console.log(`list ${endpoint}`);
-    return this.http.get<T[]>(endpoint, { ...options, ...httpOptions }).pipe(
-      tap(console.log),
-      catchError(this.handleError)
-    );
+    this.authenticationService.currentUser$.subscribe((currentUser) => {
+      this.httpOptions.headers.Authorization = 'Bearer ' + currentUser.token
+    }) 
+    return this.http
+      .get<T[]>(endpoint, { ...options, ...this.httpOptions })
+      .pipe(tap(console.log), catchError(this.handleError));
   }
 
   /**
@@ -48,8 +62,11 @@ export abstract class EntityService<T extends Entity> {
   public create(item: T, options?: any): Observable<T> {
     const endpoint = `${this.url}${this.endpoint}`;
     console.log(`create ${endpoint}`);
+    this.authenticationService.currentUser$.subscribe((currentUser) => {
+      this.httpOptions.headers.Authorization = 'Bearer ' + currentUser.token
+    }) 
     return this.http
-      .post<T>(endpoint, item, { ...options, ...httpOptions })
+      .post<T>(endpoint, item, { ...options, ...this.httpOptions })
       .pipe(
         // tap(console.log),
         // map((response: any) => response.result),
@@ -65,9 +82,12 @@ export abstract class EntityService<T extends Entity> {
   public read(id: number | string, options?: any): Observable<T> {
     const endpoint = `${this.url}${this.endpoint}/${id}`;
     console.log(`read ${endpoint}`);
-    return this.http.get<T[]>(endpoint, { ...options, ...httpOptions }).pipe(
-      catchError(this.handleError)
-    );
+    this.authenticationService.currentUser$.subscribe((currentUser) => {
+      this.httpOptions.headers.Authorization = 'Bearer ' + currentUser.token
+    }) 
+    return this.http
+      .get<T[]>(endpoint, { ...options, ...this.httpOptions })
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -78,7 +98,10 @@ export abstract class EntityService<T extends Entity> {
   public update(item: T, options?: any): Observable<T> {
     const endpoint = `${this.url}${this.endpoint}/${item._id}`;
     console.log(`update ${endpoint}`);
-    return this.http.put(endpoint, item, { ...options, ...httpOptions }).pipe(
+    this.authenticationService.currentUser$.subscribe((currentUser) => {
+      this.httpOptions.headers.Authorization = 'Bearer ' + currentUser.token
+    }) 
+    return this.http.put(endpoint, item, { ...options, ...this.httpOptions }).pipe(
       // map((response: any) => response.result),
       catchError(this.handleError)
     );
@@ -92,7 +115,10 @@ export abstract class EntityService<T extends Entity> {
   public delete(id: string, options?: any): Observable<T> {
     const endpoint = `${this.url}${this.endpoint}/${id}`;
     console.log(`delete ${endpoint}`);
-    return this.http.delete(endpoint, { ...options, ...httpOptions }).pipe(
+    this.authenticationService.currentUser$.subscribe((currentUser) => {
+      this.httpOptions.headers.Authorization = 'Bearer ' + currentUser.token
+    }) 
+    return this.http.delete(endpoint, { ...options, ...this.httpOptions }).pipe(
       // map((response: any) => response.result),
       catchError(this.handleError)
     );
@@ -102,14 +128,13 @@ export abstract class EntityService<T extends Entity> {
    * Handle errors.
    */
   public handleError(error: HttpErrorResponse): Observable<any> {
-    console.log(error);
+    const errorResponse: Alert = {
+      type: 'error',
+      message: error.message,
+    };
 
-    // const errorResponse: Alert = {
-    //   type: 'error',
-    //   message: error.error.message || error.message,
-    // };
+    console.log(errorResponse);
     // return an error observable with a user-facing error message
-    return throwError(error);
+    return throwError(() => errorResponse);
   }
 }
-
