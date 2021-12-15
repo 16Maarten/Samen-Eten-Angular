@@ -50,7 +50,7 @@ describe('StudenthomeService', () => {
     httpSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
   });
 
-  xit('should be created', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 

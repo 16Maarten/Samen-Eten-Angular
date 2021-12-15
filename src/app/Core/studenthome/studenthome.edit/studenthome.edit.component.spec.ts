@@ -3,14 +3,11 @@ import { Component, Input, Directive, HostListener } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { StudenthomeService } from '../studenthome.service';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
-import { StudenthomeListComponent } from './studenthome.list.component';
+import { StudenthomeEditComponent } from './studenthome.edit.component';
 import { AuthenticationService } from '../../user/authentication.service';
 import { Studenthome } from '../studenthome.model';
 import { User } from '../../user/user.model';
 import { FormsModule } from '@angular/forms';
-
-@Component({ selector: 'app-alert', template: '' })
-class AlertComponent {}
 
 @Directive({
   selector: '[routerLink]',
@@ -47,30 +44,17 @@ const expectedStudenthome: Studenthome = {
     owner: "619bdb5e3b174a700c923de8",
 };
 
-const expectedStudenthome2: Studenthome = {
-    _id: "2",
-    name: "Studentenvereniging Test2",
-    streetName: "lovensdijkstraat",
-    houseNumber: 61,
-    postalCode: "5634JF",
-    residence: "Test2",
-    phoneNumber:"0693549674",
-    owner: "619bdb5e3b174a700c923de8",
-}
-const expectedStudenthomes: Studenthome[] = [expectedStudenthome, expectedStudenthome2];
-
 describe('StudenthomeEditComponent', () => {
-  let component: StudenthomeListComponent;
-  let fixture: ComponentFixture<StudenthomeListComponent>;
+
+  let component: StudenthomeEditComponent;
+  let fixture: ComponentFixture<StudenthomeEditComponent>;
 
   let studenthomeServiceSpy : jasmine.SpyObj<StudenthomeService>;
   let authenticationServiceSpy;
   let routerSpy;
 
-  /**
-   *
-   */
   beforeEach(() => {
+
     authenticationServiceSpy = jasmine.createSpyObj('authenticationServiceSpy', [
       'login',
       'register',
@@ -81,13 +65,13 @@ describe('StudenthomeEditComponent', () => {
     ]);
     const mockUser$ = new BehaviorSubject<User>(expectedUserData);
     authenticationServiceSpy.currentUser$ = mockUser$;
-    studenthomeServiceSpy = jasmine.createSpyObj('StudenthomeService', ['read', 'update', 'list']);
+    studenthomeServiceSpy = jasmine.createSpyObj('StudenthomeService', ['read', 'update', 'create']);
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     TestBed.configureTestingModule({
+
       declarations: [
-        StudenthomeListComponent,
+        StudenthomeEditComponent, 
         RouterLinkStubDirective, 
-        AlertComponent
       ],
       imports: [FormsModule],
       providers: [
@@ -107,7 +91,7 @@ describe('StudenthomeEditComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StudenthomeListComponent);
+    fixture = TestBed.createComponent(StudenthomeEditComponent);
     component = fixture.componentInstance;
   });
 
@@ -115,11 +99,13 @@ describe('StudenthomeEditComponent', () => {
     fixture.destroy();
   });
 
+
   it('should create', (done) => {
-    studenthomeServiceSpy.list.and.returnValue(of(expectedStudenthomes));
+    studenthomeServiceSpy.read.and.returnValue(of(expectedStudenthome));
+
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect(component.studenthomes).toEqual(expectedStudenthomes);
+    expect(component.studenthome).toEqual(expectedStudenthome);
     done();
   });
 });
